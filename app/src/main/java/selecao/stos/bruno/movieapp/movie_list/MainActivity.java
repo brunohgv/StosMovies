@@ -1,4 +1,4 @@
-package selecao.stos.bruno.movieapp;
+package selecao.stos.bruno.movieapp.movie_list;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +11,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -23,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import selecao.stos.bruno.movieapp.Model.Movie;
+import selecao.stos.bruno.movieapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,11 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
         movieList = new ArrayList<>();
 
-//        for (int i = 0 ; i < 10 ; i++){
-//            Movie movie = new Movie(i, "title " + i, "description " + i);
-//            movieList.add(movie);
-//        }
-
         loadRecyclerViewData();
 
         adapter = new ListAdapter(movieList, this);
@@ -64,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONArray jsonArray = new JSONArray(response);
-                            System.out.print("################################################" + jsonArray.toString());
                             for (int i = 0 ; i < jsonArray.length() ; i++) {
                                 JSONObject movieObject = jsonArray.getJSONObject(i);
                                 Movie movie = new Movie(

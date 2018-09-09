@@ -1,19 +1,24 @@
-package selecao.stos.bruno.movieapp;
+package selecao.stos.bruno.movieapp.movie_list;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import selecao.stos.bruno.movieapp.Model.Movie;
+import selecao.stos.bruno.movieapp.R;
+import selecao.stos.bruno.movieapp.movie_detail.MovieDetailActivity;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
@@ -34,11 +39,19 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Movie movie = listMovies.get(position);
+        final Movie movie = listMovies.get(position);
 
         Picasso.with(context).load(movie.getImageURL()).into(holder.imageViewCover);
         holder.textViewTitle.setText(movie.getTitle());
         holder.textViewDescription.setText(movie.getDescription());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, MovieDetailActivity.class);
+                intent.putExtra("movie", movie);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -51,13 +64,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         public TextView textViewTitle;
         public TextView textViewDescription;
         public ImageView imageViewCover;
+        public CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageViewCover = (ImageView) itemView.findViewById(R.id.imageViewCover);
-            textViewTitle = (TextView) itemView.findViewById(R.id.textViewTitle);
-            textViewDescription = (TextView) itemView.findViewById(R.id.textViewDescription);
+            imageViewCover = (ImageView) itemView.findViewById(R.id.list_image);
+            textViewTitle = (TextView) itemView.findViewById(R.id.list_title);
+            textViewDescription = (TextView) itemView.findViewById(R.id.list_description);
+            cardView = (CardView) itemView.findViewById(R.id.list_card);
         }
     }
 }

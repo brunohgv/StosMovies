@@ -1,6 +1,8 @@
 package selecao.stos.bruno.movieapp.Model;
 
-public class Movie {
+import java.io.Serializable;
+
+public class Movie implements Serializable {
 
     private int id;
     private String title;
