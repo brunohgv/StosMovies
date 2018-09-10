@@ -24,7 +24,7 @@ import java.util.List;
 import selecao.stos.bruno.movieapp.Model.Movie;
 import selecao.stos.bruno.movieapp.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MovieListActivity extends AppCompatActivity {
 
     private static final String URL_MOVIES = "http://processo.stos.mobi/app/filme/listar";
 
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                                 );
                                 movieList.add(movie);
                             }
-                            adapter = new ListAdapter(movieList, MainActivity.this);
+                            adapter = new ListAdapter(movieList, MovieListActivity.this);
                             recyclerView.setAdapter(adapter);
                         } catch (JSONException e) {
                             e.printStackTrace();

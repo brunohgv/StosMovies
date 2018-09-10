@@ -1,22 +1,18 @@
 package selecao.stos.bruno.movieapp.movie_detail;
 
 import android.content.Intent;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.view.menu.MenuItemImpl;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import selecao.stos.bruno.movieapp.Model.Movie;
 import selecao.stos.bruno.movieapp.R;
-import selecao.stos.bruno.movieapp.movie_list.MainActivity;
+import selecao.stos.bruno.movieapp.movie_list.MovieListActivity;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
@@ -51,7 +47,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem menuItem) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), MovieListActivity.class);
         startActivityForResult(intent, 0);
         return true;
     }
